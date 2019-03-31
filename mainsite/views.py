@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from datetime import datetime
 from mainsite.models import Post
 # Create your views here.
@@ -14,7 +15,18 @@ from mainsite.models import Post
 
 
 def homepage(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-id')
+    
     now = datetime.now()
     return render(request, "index.html", locals())	
+
+def showpost(request,id):
+    try:
+       
+        post = Post.objects.get(id=id)
+        if post != None:
+            return render(request,"post.html",locals())
+    except:
+        return redirect('/')    
+
 

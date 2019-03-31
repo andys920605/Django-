@@ -1,20 +1,23 @@
-<!DOCTYPE <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>歡迎光臨我的部落格</title>
+<!-- index.html -->
+{% extends 'base.html' %}
+{%block title%} 歡迎光臨我的部落格 {%endblock%}
     
-</head>
-<body>
-    <h1>歡迎光臨我的部落格</h1>
-    <hr>
-    {%for post in posts %}
-    <p>{{post.title}}</p>
-    <p>{{post.body}}</p>
+{% block headmessage %}
+    <h3 style="font-family:標楷體;">本站文章列表</a>
+{%endblock%} 
+
+{% block contant %}
+
+    {%for post in posts  %}
+    <p>
+    <a href="/post/{{post.id}}">{{post.title}}</a>
+    </p>
     </hr>
     {%endfor%}
+
+
     
     
-    <h3>現在時刻:{{now}}</h3>
-</body>
-</html>>
+
+
+{% endblock %}   
